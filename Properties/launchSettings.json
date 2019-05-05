@@ -1,0 +1,29 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:42344",
+      "sslPort": 44360
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ElasticSearchConfig": "http://localhost:9200",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "VCAP_SERVICES": "{\"searchly\":[{\"name\":\"searchly-1\",\"label\":\"searchly\",\"tags\":[],\"plan\":\"starter\",\"credentials\":{\"uri\":\"http://gopivotal:8a5d45f6a81a5a257719976089ddc39c@thorin-us-east-1.searchly.com\",\"sslUri\": \"https://cloudfoundry:f0d15584ef7b5dcd1c5c1794ef3506ec@api.searchbox.io\"}}]}"
+      }
+    },
+    "cf_sample_app_dotnet": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}
