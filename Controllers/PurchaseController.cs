@@ -12,6 +12,7 @@ using CfSample.Write.Models;
 using CfSample.Read.Models;
 using EventFlow.ReadStores.InMemory.Queries;
 using CfSample.Read.Query;
+using Microsoft.Extensions.Logging;
 
 namespace CfSample.Controllers
 {
@@ -20,10 +21,12 @@ namespace CfSample.Controllers
 
         private readonly ICommandBus _commandBus;
         private readonly IQueryProcessor _queryProcessor;
+        private readonly ILogger _logger;
 
-        public PurchaseController(ICommandBus commandBus, IQueryProcessor queryProcessor) {
+        public PurchaseController(ICommandBus commandBus, IQueryProcessor queryProcessor, ILoggerFactory loggerFactory) {
             _commandBus = commandBus;
             _queryProcessor = queryProcessor;
+            _logger = loggerFactory.CreateLogger<PurchaseController>();
         }
 
         [HttpGet("/purchase")]
@@ -41,6 +44,7 @@ namespace CfSample.Controllers
                 createPurchaseModel.ProductName,
                 purchaseIdIdentity);
             await _commandBus.PublishAsync(createPurchaseCommand, cancellationToken).ConfigureAwait(false);
+            _logger.LogInformation("Purchase creation process start commited");
             return RedirectToAction("CreatePurchase", "Purchase");
         }
     }

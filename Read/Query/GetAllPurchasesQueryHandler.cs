@@ -30,6 +30,7 @@ namespace CfSample.Read.Query
                             .AllowedStatusCodes((int)HttpStatusCode.NotFound))
                             .Index(readModelDescription.IndexName.Value)
                             .Query(q=>q.MatchAll())
+                            .RequestCache(false)
                             .Size(1000), cancellationToken);
             var result = new List<PurchaseViewModel>();
             foreach(var item in searchResponse.Documents) {
